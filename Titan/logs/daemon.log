@@ -1,0 +1,994 @@
+2026-07-07 17:07:07,977 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:07:07,985 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:07:07,986 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:07:07,987 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 17:46:14,230 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:46:14,234 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:46:14,235 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:46:14,236 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 17:48:17,455 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:48:17,458 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:48:17,458 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:48:17,460 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 17:48:17,460 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 17:48:17,463 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 17:48:17,463 [INFO] Titan.DashboardAPI: Server shutdown client releases completed.
+2026-07-07 17:51:17,302 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:51:17,305 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:51:17,305 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:51:17,306 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 17:51:17,306 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 17:52:21,259 [INFO] Titan.Backtester: Retrieving synchronized multi-timeframe candle data for XAUUSD from 2026-06-30 12:52:21.259647+00:00 to 2026-07-07 12:52:21.259647+00:00...
+2026-07-07 17:52:21,416 [INFO] Titan.Backtester: Ingested 6421 execution candles. Initializing replayer logic...
+2026-07-07 17:52:31,948 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 17:52:32,620 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:52:32,622 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:52:32,622 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:55:12,930 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:55:12,932 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:55:12,934 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:55:12,935 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 17:55:12,935 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 17:55:12,940 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 17:55:12,940 [INFO] Titan.DashboardAPI: Server shutdown client releases completed.
+2026-07-07 17:56:44,653 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 17:56:44,655 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 17:56:44,656 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 17:56:44,657 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 17:56:44,657 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 18:00:19,863 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:00:19,866 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:00:19,868 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:00:19,869 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 18:00:19,869 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 18:02:05,139 [WARNING] Titan.Orchestrator: EMERGENCY STOP ENGAGED! Stopping orchestrator loop...
+2026-07-07 18:02:06,100 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:02:06,100 [INFO] Titan.Orchestrator: Orchestrator daemon loop stopped.
+2026-07-07 18:02:07,120 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:02:07,121 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:02:07,122 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:02:16,756 [INFO] Titan.Backtester: Retrieving synchronized multi-timeframe candle data for XAUUSD from 2026-06-30 13:02:16.756957+00:00 to 2026-07-07 13:02:16.756957+00:00...
+2026-07-07 18:02:16,838 [INFO] Titan.Backtester: Ingested 6421 execution candles. Initializing replayer logic...
+2026-07-07 18:02:33,426 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:02:33,908 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:02:33,910 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:02:33,911 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:05:30,700 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:05:30,703 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:05:30,704 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:05:30,705 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 18:05:30,705 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 18:05:30,708 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:30,738 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:32,745 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:32,775 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:34,308 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:34,780 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:34,815 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:36,601 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:36,820 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:36,867 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:38,873 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:38,906 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:39,622 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:40,911 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:40,945 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:42,608 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:42,950 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:42,984 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:44,991 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:45,027 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:45,596 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:47,032 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:47,067 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:48,595 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:49,072 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:49,114 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:51,119 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:51,152 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:51,591 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:53,157 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:53,191 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:54,597 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:55,196 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:55,227 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:57,234 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:57,274 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+    json.dumps({
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:05:57,599 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:05:59,279 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:04 UTC). Running multi-timeframe scanner...
+2026-07-07 18:05:59,306 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:01,226 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:01,311 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:01,336 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:03,339 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:03,365 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:04,229 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:05,369 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:05,389 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:07,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:07,415 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:07,445 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:09,447 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:09,478 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:10,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:11,484 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:11,516 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:13,241 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:13,520 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:13,555 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:15,559 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:15,585 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:16,230 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:17,593 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:17,621 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: Object of type bool is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 155, in run_cycle
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+2026-07-07 18:06:19,065 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:06:19,065 [INFO] Titan.DashboardAPI: Server shutdown client releases completed.
+2026-07-07 18:06:19,775 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:06:19,778 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:06:19,779 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:06:19,780 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 18:06:19,780 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 18:06:19,782 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:05 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:19,818 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 45, Confidence: 0.45)
+2026-07-07 18:06:19,877 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:22,224 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:25,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:28,230 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:31,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:34,223 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:37,219 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:40,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:43,220 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:46,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:49,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:52,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:55,225 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:58,220 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:06:59,893 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:06 UTC). Running multi-timeframe scanner...
+2026-07-07 18:06:59,922 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 45, Confidence: 0.45)
+2026-07-07 18:07:00,987 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:03,597 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:04,314 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:04,372 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:07,356 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:10,354 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:13,350 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:16,350 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:19,354 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:22,369 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:25,374 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:28,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:31,350 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:34,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:38,237 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:41,246 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:44,246 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:47,239 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:49,714 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:52,369 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:56,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:07:58,356 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:00,054 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:07 UTC). Running multi-timeframe scanner...
+2026-07-07 18:08:00,100 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 40, Confidence: 0.4)
+2026-07-07 18:08:02,226 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:05,226 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:08,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:11,252 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:14,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:17,255 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:20,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:23,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:26,229 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:29,245 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:32,246 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:35,267 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:38,256 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:41,230 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:44,239 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:47,255 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:50,239 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:53,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:08:56,252 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:09:00,238 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:08 UTC). Running multi-timeframe scanner...
+2026-07-07 18:09:00,276 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 40, Confidence: 0.4)
+2026-07-07 18:09:35,282 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:10:00,416 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:09 UTC). Running multi-timeframe scanner...
+2026-07-07 18:10:00,460 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 40, Confidence: 0.4)
+2026-07-07 18:10:35,278 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:11:00,605 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:10 UTC). Running multi-timeframe scanner...
+2026-07-07 18:11:00,650 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 40, Confidence: 0.4)
+2026-07-07 18:11:35,271 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:12:00,788 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:11 UTC). Running multi-timeframe scanner...
+2026-07-07 18:12:00,831 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 40, Confidence: 0.4)
+2026-07-07 18:12:35,277 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:00,972 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:12 UTC). Running multi-timeframe scanner...
+2026-07-07 18:13:01,009 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 45, Confidence: 0.45)
+2026-07-07 18:13:35,284 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:39,819 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:40,349 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:43,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:47,237 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:50,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:53,004 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:55,361 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:13:59,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:01,144 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:13 UTC). Running multi-timeframe scanner...
+2026-07-07 18:14:01,183 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 50, Confidence: 0.5)
+2026-07-07 18:14:02,231 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:05,224 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:08,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:11,228 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:14,243 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:17,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:20,240 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:23,223 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:26,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:29,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:32,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:35,290 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:38,224 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:41,224 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:44,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:47,228 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:50,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:14:53,230 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:01,338 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:14 UTC). Running multi-timeframe scanner...
+2026-07-07 18:15:01,379 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 55, Confidence: 0.55)
+2026-07-07 18:15:11,461 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:13,377 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:16,354 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:19,349 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:22,348 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:25,345 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:28,354 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:31,372 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:34,368 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:37,930 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:40,353 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:43,347 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:46,352 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:49,350 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:52,352 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:55,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:15:58,357 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:01,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:01,528 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:15 UTC). Running multi-timeframe scanner...
+2026-07-07 18:16:01,572 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 50, Confidence: 0.5)
+2026-07-07 18:16:04,363 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:07,353 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:10,356 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:13,359 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:16,367 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:19,366 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:22,347 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:25,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:28,358 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:31,362 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:34,349 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:37,356 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:40,391 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:44,228 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:47,237 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:50,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:53,236 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:56,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:16:59,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:01,705 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:16 UTC). Running multi-timeframe scanner...
+2026-07-07 18:17:01,753 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 55, Confidence: 0.55)
+2026-07-07 18:17:02,275 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:05,244 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:08,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:11,249 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:14,244 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:17,241 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:20,243 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:23,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:26,228 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:29,236 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:32,244 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:35,274 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:38,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:41,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:17:59,890 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:17 UTC). Running multi-timeframe scanner...
+2026-07-07 18:17:59,933 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 55, Confidence: 0.55)
+2026-07-07 18:18:35,266 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:19:00,058 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:18 UTC). Running multi-timeframe scanner...
+2026-07-07 18:19:00,098 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 55, Confidence: 0.55)
+2026-07-07 18:19:35,275 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:00,221 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:19 UTC). Running multi-timeframe scanner...
+2026-07-07 18:20:00,266 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 55, Confidence: 0.55)
+2026-07-07 18:20:13,939 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:16,364 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:19,355 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:22,352 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:25,346 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:28,353 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:32,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:34,376 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:37,358 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:40,113 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:40,193 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:42,524 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:42,586 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:43,430 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:43,491 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:43,613 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:43,672 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:43,827 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:43,878 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:46,867 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:49,864 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:52,885 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:55,875 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:20:58,861 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:00,436 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:20 UTC). Running multi-timeframe scanner...
+2026-07-07 18:21:00,478 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 65, Confidence: 0.65)
+2026-07-07 18:21:01,872 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:04,934 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:05,417 [WARNING] Titan.Orchestrator: EMERGENCY STOP ENGAGED! Stopping orchestrator loop...
+2026-07-07 18:21:06,488 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:21:06,488 [INFO] Titan.Orchestrator: Orchestrator daemon loop stopped.
+2026-07-07 18:21:07,210 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:21:07,216 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:21:07,217 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:21:07,868 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:10,872 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:13,946 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:16,867 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:19,878 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:23,243 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:25,863 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:29,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:32,226 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:35,305 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:38,228 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:41,225 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:44,230 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:47,219 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:50,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:53,231 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:56,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:21:59,219 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:02,231 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:05,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:08,220 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:11,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:14,223 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:17,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:20,228 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:23,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:26,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:29,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:32,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:35,272 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:38,229 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:41,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:44,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:47,219 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:50,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:53,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:56,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:22:59,224 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:02,229 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:05,229 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:08,225 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:11,225 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:14,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:17,231 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:23:35,303 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:24:35,305 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:25:04,238 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:25:04,238 [INFO] Titan.DashboardAPI: Server shutdown client releases completed.
+2026-07-07 18:25:07,331 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:25:07,333 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:25:07,335 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:25:07,336 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 18:25:07,336 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 18:25:07,366 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:07,533 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(swing_lows[-3:])["price"] if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:09,540 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:09,546 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(swing_lows[-3:])["price"] if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:11,550 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:11,556 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(swing_lows[-3:])["price"] if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:13,560 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:13,565 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(swing_lows[-3:])["price"] if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:15,570 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:15,571 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(swing_lows[-3:])["price"] if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:17,581 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:17,588 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(swing_lows[-3:])["price"] if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:19,593 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:19,600 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:21,605 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:21,610 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:23,612 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:23,620 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:25,624 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:25,630 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:27,632 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:27,638 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:29,641 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:29,641 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:31,654 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:31,662 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:33,666 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:33,673 [ERROR] Titan.Orchestrator: Unexpected error in orchestrator daemon loop: '<' not supported between instances of 'dict' and 'dict'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\core\orchestrator.py", line 154, in run_cycle
+    liq_res = LiquidityEngine.analyze(m1_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\Desktop\goldtradingbot\Titan\market\intelligence\liquidity.py", line 76, in analyze
+    ssl = eql_price if eql else (min(s["price"] for s in swing_lows[-3:]) if swing_lows else min(lows[-20:]))
+                                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'
+2026-07-07 18:25:35,338 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:25:35,444 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:25:35,444 [INFO] Titan.DashboardAPI: Server shutdown client releases completed.
+2026-07-07 18:25:36,219 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:25:36,222 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:25:36,223 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:25:36,224 [INFO] Titan.Orchestrator: Initializing Titan V2 Autonomous Daemon Orchestrator...
+2026-07-07 18:25:36,224 [INFO] Titan.DashboardAPI: Autonomous orchestrator daemon started successfully alongside FastAPI server.
+2026-07-07 18:25:36,227 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:24 UTC). Running Market Intelligence Engines...
+2026-07-07 18:25:36,255 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 67, Confidence: 0.671)
+2026-07-07 18:26:00,309 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:25 UTC). Running Market Intelligence Engines...
+2026-07-07 18:26:00,331 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 64, Confidence: 0.645)
+2026-07-07 18:26:35,279 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:00,453 [INFO] Titan.Orchestrator: New M1 execution candle detected (16:26 UTC). Running Market Intelligence Engines...
+2026-07-07 18:27:00,478 [INFO] Titan.Orchestrator: MTF Decision: WAIT (Score: 64, Confidence: 0.645)
+2026-07-07 18:27:17,029 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:19,814 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:19,868 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:22,857 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:25,857 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:28,859 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:31,859 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:34,863 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:35,335 [WARNING] Titan.Orchestrator: EMERGENCY STOP ENGAGED! Stopping orchestrator loop...
+2026-07-07 18:27:36,556 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:27:36,556 [INFO] Titan.Orchestrator: Orchestrator daemon loop stopped.
+2026-07-07 18:27:37,132 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:27:37,133 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:27:37,134 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:27:37,864 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:40,854 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:43,856 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:46,856 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:49,855 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:52,863 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:55,854 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:27:58,862 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:01,864 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:04,854 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:07,854 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:10,852 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:13,850 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:16,861 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:19,862 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:22,867 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:25,878 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:29,247 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:31,856 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:34,856 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:38,234 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:41,224 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:44,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:47,252 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:50,249 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:53,251 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:56,226 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:28:59,252 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:02,245 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:05,244 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:08,249 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:11,241 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:14,243 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:17,247 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:20,260 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:23,241 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:26,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:29,246 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:32,237 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:29:35,306 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:35,269 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:49,636 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:49,850 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:52,331 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:52,391 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:55,371 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:30:58,370 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:01,367 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:04,377 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:07,368 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:10,373 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:13,414 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:17,232 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:20,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:23,226 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:26,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:29,223 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:32,243 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:35,289 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:38,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:41,240 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:44,227 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:47,222 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:50,223 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:53,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:56,238 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:31:59,243 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:02,235 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:05,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:08,233 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:11,225 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:35,259 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:46,212 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:46,383 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:49,383 [INFO] Titan.DashboardAPI: Symbol select in endpoint: True for XAUUSD
+2026-07-07 18:32:52,483 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-07 18:32:52,483 [INFO] Titan.DashboardAPI: Server shutdown client releases completed.
+2026-07-07 18:42:26,487 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-07 18:42:26,490 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-07 18:42:26,490 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-07 18:42:26,492 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-08 01:57:16,427 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-08 01:57:16,435 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-08 01:57:16,437 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-08 01:57:16,438 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.
+2026-07-08 02:19:09,967 [INFO] Titan.MT5Client: Initializing MetaTrader 5 Connection...
+2026-07-08 02:19:09,971 [INFO] Titan.MT5Client: MT5 interface initialized successfully.
+2026-07-08 02:19:09,971 [INFO] Titan.MT5Client: Terminal connected: MetaQuotes Ltd. on MetaQuotes-Demo. Trade allowed: True
+2026-07-08 02:19:09,973 [INFO] Titan.MT5Client: MT5 broker pipeline shutdown completed.

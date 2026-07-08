@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN V2 - Institutional Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="brand">
+            <h1 class="logo-text">PROJECT <span class="accent-gold">TITAN V2</span></h1>
+            <span class="tagline">Institutional Autonomous Algorithmic Engine</span>
+        </div>
+        <div class="system-status">
+            <div id="connection-indicator" class="indicator-group disconnected">
+                <span class="indicator-dot"></span>
+                <span class="indicator-label" id="lbl-status">DISCONNECTED</span>
+            </div>
+            <div id="auto-trade-indicator" class="indicator-group disabled">
+                <span class="indicator-dot"></span>
+                <span class="indicator-label" id="lbl-auto-trade">AUTO TRADE OFF</span>
+            </div>
+            <div class="session-clock" id="session-clock">
+                <span class="label">UTC Clock:</span>
+                <span class="value" id="lbl-clock">00:00:00</span>
+            </div>
+            <div class="session-name" id="session-name">
+                <span class="label">Session:</span>
+                <span class="value" id="lbl-session">-</span>
+            </div>
+            <div class="header-actions">
+                <button id="btn-halt" class="btn btn-danger" onclick="toggleHalt()">EMERGENCY HALT</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+
+        <!-- TOP ACCOUNT METRICS -->
+        <section class="metrics-row grid-full">
+            <div class="metric-card">
+                <span class="metric-title">Account Balance</span>
+                <span class="metric-value font-numeric" id="val-balance">$0.00</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Equity</span>
+                <span class="metric-value font-numeric" id="val-equity">$0.00</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Margin Free</span>
+                <span class="metric-value font-numeric" id="val-margin-free">$0.00</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Margin Level</span>
+                <span class="metric-value font-numeric" id="val-margin-level">0.00%</span>
+            </div>
+            <div class="metric-card" id="card-pnl">
+                <span class="metric-title">Today's Net P/L</span>
+                <span class="metric-value font-numeric" id="val-pnl">$0.00</span>
+            </div>
+        </section>
+
+        <!-- ROW: CHART + DECISION CARD + MANUAL TRADE -->
+        <section class="chart-container card-panel span-8">
+            <div class="panel-header">
+                <h2>Real-Time Market Telemetry</h2>
+                <div class="chart-controls">
+                    <span class="badge badge-gold">XAUUSD M5</span>
+                </div>
+            </div>
+            <div class="panel-content chart-wrapper" id="tv-chart"></div>
+        </section>
+
+        <!-- RIGHT COLUMN: Manual Trade -->
+        <section class="manual-trade-panel card-panel span-4">
+            <div class="panel-header">
+                <h2>⚡ Manual Execution</h2>
+                <span class="badge badge-gold" id="lbl-live-price">XAUUSD: —</span>
+            </div>
+            <div class="panel-content">
+                <div class="manual-trade-inputs">
+                    <div class="mt-input-row">
+                        <label for="mt-lot">Lot Size</label>
+                        <div class="mt-lot-control">
+                            <button class="mt-lot-btn" onclick="adjustLot(-0.01)">−</button>
+                            <input type="number" id="mt-lot" class="mt-input" value="0.01" step="0.01" min="0.01" max="100">
+                            <button class="mt-lot-btn" onclick="adjustLot(0.01)">+</button>
+                        </div>
+                    </div>
+                    <div class="mt-preset-row">
+                        <button class="mt-preset" onclick="setLot(0.01)">0.01</button>
+                        <button class="mt-preset" onclick="setLot(0.05)">0.05</button>
+                        <button class="mt-preset" onclick="setLot(0.10)">0.10</button>
+                        <button class="mt-preset" onclick="setLot(0.50)">0.50</button>
+                        <button class="mt-preset" onclick="setLot(1.00)">1.00</button>
+                    </div>
+                </div>
+                <div class="manual-trade-btns">
+                    <button class="btn-manual-buy" id="btn-manual-buy" onclick="placeManualOrder('BUY')">
+                        <span class="mt-btn-icon">▲</span>
+                        <span class="mt-btn-label">BUY</span>
+                        <span class="mt-btn-sub" id="ask-price">—</span>
+                    </button>
+                    <button class="btn-manual-sell" id="btn-manual-sell" onclick="placeManualOrder('SELL')">
+                        <span class="mt-btn-icon">▼</span>
+                        <span class="mt-btn-label">SELL</span>
+                        <span class="mt-btn-sub" id="bid-price">—</span>
+                    </button>
+                </div>
+                <div id="mt-status" class="mt-status-msg"></div>
+                <div class="mt-close-all-row">
+                    <button class="btn-close-all" onclick="closeAllPositions()">✕ Close All Positions</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABBED TRADE MONITOR — full width, directly below -->
+        <section class="history-panel card-panel grid-full" style="margin-top:0;">
+            <div class="panel-header" style="flex-wrap:wrap; gap:10px;">
+                <h2>Trade Monitor</h2>
+                <div class="trade-tabs" id="trade-tabs">
+                    <button class="trade-tab active" id="tab-open" onclick="switchTradeTab('open')">
+                        🟢 Open Trades <span class="tab-badge" id="badge-open">0</span>
+                    </button>
+                    <button class="trade-tab" id="tab-history" onclick="switchTradeTab('history')">
+                        📋 History <span class="tab-badge" id="badge-history">0</span>
+                    </button>
+                    <button class="trade-tab tab-profit" id="tab-profit" onclick="switchTradeTab('profit')">
+                        ✅ Profit <span class="tab-badge" id="badge-profit">0</span>
+                    </button>
+                    <button class="trade-tab tab-loss" id="tab-loss" onclick="switchTradeTab('loss')">
+                        ❌ Loss <span class="tab-badge" id="badge-loss">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- OPEN TRADES -->
+            <div id="pane-open" class="trade-pane active panel-content table-responsive">
+                <table class="grid-table">
+                    <thead><tr>
+                        <th>Symbol</th><th>Action</th><th>Volume</th>
+                        <th>Entry</th><th>Current</th><th>SL / TP</th>
+                        <th>Floating P/L</th><th>Strategy</th><th>Action</th>
+                    </tr></thead>
+                    <tbody id="body-open-trades">
+                        <tr><td class="empty-state" colspan="9">No open positions. Engine is scanning...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- HISTORY TAB -->
+            <div id="pane-history" class="trade-pane panel-content table-responsive" style="display:none;">
+                <table class="grid-table">
+                    <thead><tr>
+                        <th>Ticket</th><th>Symbol</th><th>Type</th><th>Lots</th>
+                        <th>Entry</th><th>Exit</th><th>Open Time</th><th>Close Time</th>
+                        <th>P/L</th><th>Exit Reason</th>
+                    </tr></thead>
+                    <tbody id="body-history">
+                        <tr><td class="empty-state" colspan="10">No historical outcomes found.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PROFIT TAB -->
+            <div id="pane-profit" class="trade-pane panel-content table-responsive" style="display:none;">
+                <table class="grid-table">
+                    <thead><tr>
+                        <th>Ticket</th><th>Symbol</th><th>Type</th><th>Lots</th>
+                        <th>Entry</th><th>Exit</th><th>Close Time</th><th>Profit ($)</th>
+                    </tr></thead>
+                    <tbody id="body-profit">
+                        <tr><td class="empty-state" colspan="8">No profitable trades recorded yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- LOSS TAB -->
+            <div id="pane-loss" class="trade-pane panel-content table-responsive" style="display:none;">
+                <table class="grid-table">
+                    <thead><tr>
+                        <th>Ticket</th><th>Symbol</th><th>Type</th><th>Lots</th>
+                        <th>Entry</th><th>Exit</th><th>Close Time</th><th>Loss ($)</th>
+                    </tr></thead>
+                    <tbody id="body-loss">
+                        <tr><td class="empty-state" colspan="8">No losing trades recorded yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- DECISION CARD -->
+        <section class="decision-panel card-panel grid-full">
+            <div class="panel-header">
+                <h2>Decision Card</h2>
+            </div>
+            <div class="panel-content decision-details">
+                <!-- Column 1: Gauge & Confidence -->
+                <div class="decision-meta-col">
+                    <div class="decision-gauge">
+                        <div class="score-circle-wrapper">
+                            <svg class="score-ring" width="110" height="110">
+                                <circle class="score-ring-bg" cx="55" cy="55" r="46"></circle>
+                                <circle class="score-ring-fill" cx="55" cy="55" r="46" id="ring-score-fill"></circle>
+                            </svg>
+                            <div class="score-text-block">
+                                <span class="score-number" id="lbl-score">0</span>
+                                <span class="score-label">CONFLUENCE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="decision-decision-badge-container">
+                        <div id="lbl-decision-badge" class="decision-badge wait">WAIT</div>
+                    </div>
+                    <div class="confidence-bar-group">
+                        <div class="confidence-hdr">
+                            <span>Confidence Index</span>
+                            <span id="lbl-confidence">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" id="bar-confidence" style="width:0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Market Evidence -->
+                <div class="decision-evidence-col">
+                    <div class="evidence-box">
+                        <div class="evidence-item"><span class="label">Regime</span><span class="value" id="val-market-state">-</span></div>
+                        <div class="evidence-item"><span class="label">Multi-TF Trend</span><span class="value" id="val-trend-state">-</span></div>
+                        <div class="evidence-item"><span class="label">Momentum (RSI)</span><span class="value" id="val-momentum-state">-</span></div>
+                        <div class="evidence-item"><span class="label">Volatility (ATR)</span><span class="value" id="val-volatility-state">-</span></div>
+                        <div class="evidence-item"><span class="label">Structure Break</span><span class="value" id="val-structure-state">-</span></div>
+                        <div class="evidence-item"><span class="label">Liquidity Zone</span><span class="value" id="val-liquidity-state">-</span></div>
+                    </div>
+                </div>
+                
+                <!-- Column 3: Trade Targets -->
+                <div class="decision-targets-col">
+                    <div class="trade-targets-box">
+                        <h4>Expected Entry Targets</h4>
+                        <div class="evidence-box">
+                            <div class="evidence-item"><span class="label">Entry Price</span><span class="value accent-gold" id="val-entry">0.00</span></div>
+                            <div class="evidence-item"><span class="label">Stop Loss (SL)</span><span class="value color-loss" id="val-sl">0.00</span></div>
+                            <div class="evidence-item"><span class="label">Take Profit (TP)</span><span class="value color-win" id="val-tp">0.00</span></div>
+                        </div>
+                        <div class="evidence-box mt-1">
+                            <div class="evidence-item"><span class="label">Expected R:R</span><span class="value" id="val-expected-rr">-</span></div>
+                            <div class="evidence-item"><span class="label font-size-sm">Expected Hold</span><span class="value font-size-sm" id="val-expected-hold">-</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 4: Rationale -->
+                <div class="decision-rationale-col">
+                    <div class="reason-box" style="height: 100%;">
+                        <h4>Confluence Rationale:</h4>
+                        <p id="val-reason-text">Awaiting data stream classification...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOTTOM ROW: Settings | Learning | Backtest -->
+        <section class="settings-panel card-panel span-4">
+            <div class="panel-header"><h2>Control Panel</h2></div>
+            <div class="panel-content form-content">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cfg-risk">Risk Per Trade (%)</label>
+                        <input type="number" step="0.1" id="cfg-risk" class="form-input" value="1.0">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfg-drawdown">Max Daily Loss (%)</label>
+                        <input type="number" step="0.5" id="cfg-drawdown" class="form-input" value="3.0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cfg-maxpos">Max Concurrent Trades</label>
+                        <input type="number" id="cfg-maxpos" class="form-input" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfg-session">Trading Session</label>
+                        <select id="cfg-session" class="form-input">
+                            <option value="London-New York Overlap">London-New York Overlap</option>
+                            <option value="London Session">London Session</option>
+                            <option value="New York Session">New York Session</option>
+                            <option value="Asian Session">Asian Session</option>
+                            <option value="All">All Sessions</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cfg-confidence">Min Confidence</label>
+                        <input type="range" min="0.40" max="0.90" step="0.05" id="cfg-confidence" class="form-input" value="0.70" oninput="document.getElementById('lbl-cfg-conf').innerText=Math.round(this.value*100)+'%'">
+                        <span id="lbl-cfg-conf">70%</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cfg-spread">Spread Limit (pts)</label>
+                        <input type="number" id="cfg-spread" class="form-input" value="300">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cfg-atrmult">ATR SL Multiplier</label>
+                        <input type="number" step="0.1" id="cfg-atrmult" class="form-input" value="1.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfg-tpmult">TP Multiplier</label>
+                        <input type="number" step="0.1" id="cfg-tpmult" class="form-input" value="1.5">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group flex-row">
+                        <label for="cfg-newslock" class="checkbox-label">
+                            <input type="checkbox" id="cfg-newslock" checked>
+                            Lockout during news releases
+                        </label>
+                    </div>
+                    <div class="form-group flex-row">
+                        <label for="cfg-autotrade" class="checkbox-label">
+                            <input type="checkbox" id="cfg-autotrade">
+                            Auto Trade Execution Enabled
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-gold" onclick="saveSettings()">Save Configuration Profile</button>
+            </div>
+        </section>
+
+        <section class="learning-panel card-panel span-4">
+            <div class="panel-header"><h2>Learning Pattern Advisory</h2></div>
+            <div class="panel-content advisory-list" id="feedback-list">
+                <div class="empty-state">No recommendations yet. Run trades to feed the learning logic.</div>
+            </div>
+        </section>
+
+        <section class="backtest-panel card-panel span-4">
+            <div class="panel-header"><h2>Backtest Replay Engine</h2></div>
+            <div class="panel-content form-content">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bt-symbol">Symbol</label>
+                        <input type="text" id="bt-symbol" class="form-input" value="XAUUSD">
+                    </div>
+                    <div class="form-group">
+                        <label for="bt-range">Simulation Range</label>
+                        <select id="bt-range" class="form-input">
+                            <option value="last_day">Replay Last Day</option>
+                            <option value="last_week" selected>Replay Last Week</option>
+                            <option value="last_month">Replay Last Month</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-gold" id="btn-backtest" onclick="triggerBacktest()">Run Simulation Replay</button>
+                <div id="backtest-pnl-summary" class="backtest-results-box" style="display:none; margin-top:15px;">
+                    <h4>Simulation Statistics</h4>
+                    <div class="results-grid">
+                        <div class="res-item"><span class="lbl">Trades</span><span class="val" id="bt-trades">-</span></div>
+                        <div class="res-item"><span class="lbl">Win Rate</span><span class="val" id="bt-winrate">-</span></div>
+                        <div class="res-item"><span class="lbl">Profit Factor</span><span class="val" id="bt-pf">-</span></div>
+                        <div class="res-item"><span class="lbl">Max DD</span><span class="val" id="bt-drawdown">-</span></div>
+                        <div class="res-item"><span class="lbl">Sharpe</span><span class="val" id="bt-sharpe">-</span></div>
+                        <div class="res-item"><span class="lbl">Expectancy</span><span class="val" id="bt-expectancy">-</span></div>
+                        <div class="res-item"><span class="lbl">Avg Hold</span><span class="val" id="bt-hold">-</span></div>
+                        <div class="res-item"><span class="lbl">Final Bal</span><span class="val" id="bt-balance">-</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>Project Titan V2 — Automated Quantitative Investment Engine.</p>
+    </footer>
+
+    <script src="script.js?v=4"></script>
+</body>
+</html>
