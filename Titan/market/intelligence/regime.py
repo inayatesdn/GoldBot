@@ -56,55 +56,43 @@ class MarketRegimeEngine:
         last_bar_range = abs(candles[-1]["close"] - candles[-1]["open"])
         is_news_spike = (last_bar_range > 3.5 * atr_14) if atr_14 > 0 else False
         
-        # Determine Regime State
-        state = "Range"
+        # Determine Regime State conform to checklist (Step 5)
+        state_val = "Range"
         confidence = 0.5
-        reason = "Market is in range compression."
+        reason = "Market is in range consolidation."
         
-        # Compression (Bollinger Band / ATR narrow shrinkage)
+        # Check compression vs expansion
         is_compression = (atr_14 < prev_atr_14 * 0.70)
         is_expansion = (atr_14 > prev_atr_14 * 1.35)
         
-        if is_news_spike:
-            state = "News Spike"
+        if volatility > 1.8:
+            state_val = "High Volatility"
             confidence = 0.90
-            reason = f"Massive volatility expansion on last bar ({last_bar_range:.2f} pts vs ATR {atr_14:.2f})"
-        elif is_compression and adx_14 < 20:
-            state = "Compression"
-            confidence = 0.80
-            reason = "Volatility is shrinking dramatically under ADX threshold"
-        elif is_expansion and adx_14 > 25:
-            state = "Expansion"
+            reason = f"High Volatility regime detected (index score: {volatility:.2f})"
+        elif volatility < 0.6:
+            state_val = "Low Volatility"
             confidence = 0.85
-            reason = "Volatility ATR expansion observed alongside rising trend strength"
-        elif adx_14 > 40:
-            state = "Strong Trend"
-            confidence = 0.92
-            direction = "BULLISH" if ema_20_slope > 0 else "BEARISH"
-            reason = f"Institutional strong {direction} trend (ADX {adx_14:.1f}, EMA Slope {ema_20_slope:.4f})"
-        elif adx_14 > 25 and (ema_aligned_bull or ema_aligned_bear):
-            state = "Trending"
-            confidence = 0.82
-            direction = "BULLISH" if ema_aligned_bull else "BEARISH"
-            reason = f"Trending market alignment confirmed ({direction})"
-        elif adx_14 < 15 and range_pct < 0.002:
-            # Low volatility accumulation close to swing lows
-            if len(swing_lows) > 0 and abs(closes[-1] - swing_lows[-1]) < (atr_14 * 1.5):
-                state = "Accumulation"
-                confidence = 0.75
-                reason = "Flat consolidation near major support level (Accumulation cycle)"
-            elif len(swing_highs) > 0 and abs(closes[-1] - swing_highs[-1]) < (atr_14 * 1.5):
-                state = "Distribution"
-                confidence = 0.75
-                reason = "Flat consolidation near prior resistance peaks (Distribution zone)"
-        elif adx_14 >= 20 and adx_14 <= 25:
-            state = "Weak Trend"
-            confidence = 0.70
-            reason = f"Trend showing signs of exhaustion/weakness (ADX {adx_14:.1f})"
+            reason = f"Low Volatility compression detected (index score: {volatility:.2f})"
+        elif adx_14 > 30 and ema_aligned_bull:
+            state_val = "Strong Bull Trend"
+            confidence = 0.95
+            reason = f"Strong Bullish Trend confirmed (ADX: {adx_14:.1f}, EMA Slope: {ema_20_slope:.4f})"
+        elif adx_14 > 30 and ema_aligned_bear:
+            state_val = "Strong Bear Trend"
+            confidence = 0.95
+            reason = f"Strong Bearish Trend confirmed (ADX: {adx_14:.1f}, EMA Slope: {ema_20_slope:.4f})"
+        elif adx_14 > 25 and (atr_14 > prev_atr_14 * 1.35):
+            state_val = "Breakout"
+            confidence = 0.80
+            reason = f"Breakout state detected (ATR expansion ratio: {(atr_14/prev_atr_14) if prev_atr_14 > 0 else 1.0:.2f})"
         elif len(closes) > 10 and ((closes[-1] > ema_20[-1] and closes[-3] < ema_20[-3]) or (closes[-1] < ema_20[-1] and closes[-3] > ema_20[-3])):
-            state = "Reversal"
-            confidence = 0.65
-            reason = "Price crossing main short term EMA trend line suggesting structural shift"
+            state_val = "Reversal"
+            confidence = 0.75
+            reason = "Structural Reversal crossing main short term EMA line."
+        else:
+            state_val = "Range"
+            confidence = 0.70
+            reason = f"Standard range consolidation detected (ADX: {adx_14:.1f})"
             
         metrics = {
             "atr_14": atr_14,
@@ -119,6 +107,6 @@ class MarketRegimeEngine:
         return {
             "confidence": float(confidence),
             "reason": reason,
-            "state": state,
+            "state": state_val,
             "metrics": metrics
         }

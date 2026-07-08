@@ -122,6 +122,8 @@ class MT5Client:
             
         positions = []
         for pos in raw_positions:
+            if getattr(pos, "magic", 0) != 2026888:
+                continue
             positions.append({
                 "ticket": pos.ticket,
                 "symbol": pos.symbol,
@@ -155,6 +157,8 @@ class MT5Client:
             
         orders = []
         for o in raw_orders:
+            if getattr(o, "magic", 0) != 2026888:
+                continue
             orders.append({
                 "ticket": o.ticket,
                 "symbol": o.symbol,
@@ -183,6 +187,8 @@ class MT5Client:
             
         deals = []
         for d in history_deals:
+            if getattr(d, "magic", 0) != 2026888:
+                continue
             # Filters entry point transactions, only count transaction deals with profit adjustments
             # We want trades that closed.
             if d.entry == mt5.DEAL_ENTRY_OUT or d.entry == mt5.DEAL_ENTRY_OUT_BY:

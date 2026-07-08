@@ -160,10 +160,64 @@ class LearningEngine:
                     (ticket, symbol, direction, volume, entry, open_time_str, close_price, close_time_str, pnl, exit_reason, deal["profit"], pnl, duration_sec, confidence)
                 )
                 
+            # Determine exit metrics (Rule 1)
+            exit_reason_upper = exit_reason.upper() if exit_reason else ""
+            sl_hit_val = 1 if "SL" in exit_reason_upper or "STOP LOSS" in exit_reason_upper else 0
+            tp_hit_val = 1 if "TP" in exit_reason_upper or "TAKE PROFIT" in exit_reason_upper or "TARGET" in exit_reason_upper else 0
+            smart_exit_val = 1 if "SMART" in exit_reason_upper or "EXHAUST" in exit_reason_upper or "LIQUIDATION" in exit_reason_upper else 0
+            manual_exit_val = 1 if "MANUAL" in exit_reason_upper or "HALT" in exit_reason_upper else 0
+            
+            try:
+                ind_payload = json.loads(indicators_json) if isinstance(indicators_json, str) else indicators_json
+                if not isinstance(ind_payload, dict):
+                    ind_payload = {}
+            except Exception:
+                ind_payload = {}
+                
+            entry_score_val = int(ind_payload.get("score", 70))
+            
+            # Root Cause / Winning Analyzers (Rule 2 & 3)
+            root_cause_val = "{}"
+            win_analysis_val = "{}"
+            if pnl < 0:
+                rc_analysis = LearningEngine.perform_root_cause_analysis(pnl, regime, sess, ind_payload, mfe_pts, mae_pts, duration_sec)
+                root_cause_val = json.dumps(rc_analysis)
+            else:
+                w_analysis = LearningEngine.perform_winning_trade_analysis(pnl, regime, sess, ind_payload)
+                win_analysis_val = json.dumps(w_analysis)
+                
+            # Retrieve screenshots and ticks from global state thread-safely
+            from Titan.core.state import state
+            screenshot_e = ""
+            screenshot_x = ""
+            ticks_seq = []
+            
+            state.lock.acquire()
+            try:
+                screenshot_e = state.screenshot_entry_map.get(ticket, "")
+                screenshot_x = state.screenshot_exit_map.get(ticket, "")
+                ticks_seq = state.tick_sequence_map.get(ticket, [])
+            except Exception:
+                pass
+            finally:
+                state.lock.release()
+                
+            if not screenshot_e:
+                screenshot_e = LearningEngine.generate_trade_screenshot(ticket, "ENTRY", symbol, entry, direction)
+                state.lock.acquire()
+                state.screenshot_entry_map[ticket] = screenshot_e
+                state.lock.release()
+                
+            if not screenshot_x:
+                screenshot_x = LearningEngine.generate_trade_screenshot(ticket, "EXIT", symbol, close_price, direction)
+                state.lock.acquire()
+                state.screenshot_exit_map[ticket] = screenshot_x
+                state.lock.release()
+                
             # Store learning snapshot
             learning_snapshot = {
                 "market_snapshot": {"regime": regime, "session": sess, "symbol": symbol},
-                "indicators": json.loads(indicators_json) if isinstance(indicators_json, str) else indicators_json,
+                "indicators": ind_payload,
                 "entry_reason": entry_reason,
                 "exit_reason": exit_reason,
                 "confidence": confidence,
@@ -173,10 +227,18 @@ class LearningEngine:
             
             cursor.execute(
                 """
-                INSERT OR REPLACE INTO learning_outcomes (ticket, symbol, regime, session, pnl, mfe, mae, duration_seconds, timeframe, setup_name, indicators_json)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT OR REPLACE INTO learning_outcomes (
+                    ticket, symbol, regime, session, pnl, mfe, mae, duration_seconds, timeframe, setup_name, indicators_json,
+                    entry_score, sl_hit, tp_hit, manual_exit, smart_exit, screenshot_entry, screenshot_exit, tick_sequence_json,
+                    root_cause_json, win_analysis_json
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (ticket, symbol, regime, sess, pnl, mfe_pts, mae_pts, duration_sec, timeframe, setup_name, json.dumps(learning_snapshot))
+                (
+                    ticket, symbol, regime, sess, pnl, mfe_pts, mae_pts, duration_sec, timeframe, setup_name, json.dumps(learning_snapshot),
+                    entry_score_val, sl_hit_val, tp_hit_val, manual_exit_val, smart_exit_val, screenshot_e, screenshot_x, json.dumps(ticks_seq),
+                    root_cause_val, win_analysis_val
+                )
             )
             
         # Rebuild History equivalence: Delete any table closed trades that DO NOT exist on MT5 broker history
@@ -356,3 +418,237 @@ class LearningEngine:
             "worst_setup": worst_setup,
             "recommendations": recommendations
         }
+
+    @staticmethod
+    def perform_root_cause_analysis(pnl: float, regime: str, session: str, indicators: Dict[str, Any], mfe: float, mae: float, duration: int) -> Dict[str, Any]:
+        """
+        Rule 2: Root cause analysis of losing trades.
+        Evaluates potential causes and assigns a confidence score (0.0 to 1.0) to each.
+        """
+        if pnl >= 0:
+            return {}
+            
+        trend = indicators.get("trend", "N/A")
+        rsi_val = 50.0
+        try:
+            momentum_str = indicators.get("momentum", "")
+            if "RSI:" in momentum_str:
+                rsi_val = float(momentum_str.split("RSI:")[1].split("|")[0].strip())
+        except Exception:
+            pass
+            
+        vol_str = indicators.get("volatility", "")
+        vol_status = "NORMAL"
+        if "HIGH" in vol_str.upper():
+            vol_status = "HIGH"
+        elif "LOW" in vol_str.upper():
+            vol_status = "LOW"
+            
+        causes = {
+            "wrong_trend": 0.0,
+            "entered_too_early": 0.0,
+            "entered_too_late": 0.0,
+            "stop_loss_too_tight": 0.0,
+            "stop_loss_too_wide": 0.0,
+            "spread_too_high": 0.0,
+            "low_liquidity": 0.0,
+            "fake_breakout": 0.0,
+            "weak_momentum": 0.0,
+            "news_event": 0.0,
+            "counter_trend_trade": 0.0,
+            "wrong_market_regime": 0.0,
+            "poor_risk_to_reward": 0.0,
+            "volatility_spike": 0.0,
+            "session_issue": 0.0
+        }
+        
+        # 1. Wrong Trend / Counter Trend
+        if trend == "BEARISH" and indicators.get("decision") == "BUY":
+            causes["wrong_trend"] = 0.8
+            causes["counter_trend_trade"] = 0.7
+        elif trend == "BULLISH" and indicators.get("decision") == "SELL":
+            causes["wrong_trend"] = 0.8
+            causes["counter_trend_trade"] = 0.7
+            
+        # 2. Entered too early (MFE existed but reversed to hit SL)
+        if mfe > 100:
+            causes["entered_too_early"] = 0.6
+            causes["stop_loss_too_tight"] = 0.7
+            
+        # 3. Entered too late (immediate MAE, no MFE)
+        if mfe < 30 and mae > 100:
+            causes["entered_too_late"] = 0.7
+            
+        # 4. Stop loss too tight
+        if mae > 50 and mae < 150:
+            causes["stop_loss_too_tight"] = 0.8
+            
+        # 5. Stop loss too wide
+        if duration > 1800 and abs(pnl) > 200:
+            causes["stop_loss_too_wide"] = 0.5
+            
+        # 6. Spread too high
+        try:
+            spread = int(indicators.get("spread", 0))
+            if spread > 250:
+                causes["spread_too_high"] = 0.9
+        except Exception:
+            pass
+            
+        # 7. Low liquidity
+        if session == "Asian Session" or vol_status == "LOW":
+            causes["low_liquidity"] = 0.6
+            
+        # 8. Fake breakout
+        structure = indicators.get("structure", "")
+        if "BREAK" in structure or "BOS" in structure:
+            if mfe < 55:
+                causes["fake_breakout"] = 0.8
+                
+        # 9. Weak momentum
+        if abs(rsi_val - 50.0) < 5.0:
+            causes["weak_momentum"] = 0.7
+            
+        # 10. Wrong market regime
+        if "RANGE" in regime.upper() or "COMPRESSION" in regime.upper():
+            causes["wrong_market_regime"] = 0.7
+            
+        # 11. Volatility spike
+        if vol_status == "HIGH":
+            causes["volatility_spike"] = 0.7
+            
+        sorted_causes = sorted(causes.items(), key=lambda x: x[1], reverse=True)
+        primary_cause = sorted_causes[0][0] if sorted_causes[0][1] > 0.3 else "market_noise"
+        
+        return {
+            "primary_cause": primary_cause.replace('_', ' ').title(),
+            "confidence_scores": causes,
+            "analyzed_at": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+    @staticmethod
+    def perform_winning_trade_analysis(pnl: float, regime: str, session: str, indicators: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Rule 3: Winning trade setup profiling.
+        """
+        if pnl <= 0:
+            return {}
+            
+        trend = indicators.get("trend", "N/A")
+        structure = indicators.get("structure", "N/A")
+        liquidity = indicators.get("liquidity", "N/A")
+        entry_score = indicators.get("score", 0)
+        
+        confirmations = []
+        if trend != "N/A" and trend != "NEUTRAL":
+            confirmations.append("trend_aligned")
+        if "BOS" in structure or "CHOCH" in structure or "BREAK" in structure:
+            confirmations.append("structure_breakout")
+        if "SWEEP" in liquidity or "POOL" in liquidity:
+            confirmations.append("liquidity_sweep")
+        if entry_score >= 80:
+            confirmations.append("high_confluence")
+            
+        return {
+            "success_reason": "Setup confluence confirmation met targets",
+            "confirmations": confirmations,
+            "regime": regime,
+            "session": session,
+            "trend": trend,
+            "entry_score": entry_score,
+            "analyzed_at": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+    @staticmethod
+    def search_similar_setups(conn, symbol: str, regime: str, session: str, direction: str) -> Dict[str, Any]:
+        """
+        Rule 4: Similar Setup Search
+        Queries past learning outcomes with similar setups.
+        """
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT pnl, mae, duration_seconds 
+            FROM learning_outcomes 
+            WHERE regime = ? AND session = ? AND ticket IN (
+                SELECT ticket FROM trades WHERE direction = ?
+            )
+            """,
+            (regime, session, direction)
+        )
+        rows = cursor.fetchall()
+        
+        if not rows:
+            return {
+                "count": 0,
+                "win_rate": 100.0,
+                "avg_profit": 0.0,
+                "avg_drawdown_pts": 0.0,
+                "avg_hold_time_mins": 0.0,
+                "actionable": True
+            }
+            
+        count = len(rows)
+        wins = [float(r["pnl"]) for r in rows if float(r["pnl"]) > 0]
+        win_rate = (len(wins) / count) * 100.0
+        
+        avg_profit = sum([float(r["pnl"]) for r in rows]) / count
+        avg_drawdown = sum([float(r["mae"]) for r in rows if r["mae"] is not None]) / count
+        avg_hold = (sum([int(r["duration_seconds"]) for r in rows if r["duration_seconds"] is not None]) / count) / 60.0
+        
+        actionable = True
+        if count >= 3 and win_rate < 50.0:
+            actionable = False
+            
+        return {
+            "count": count,
+            "win_rate": round(win_rate, 2),
+            "avg_profit": round(avg_profit, 2),
+            "avg_drawdown_pts": round(avg_drawdown, 2),
+            "avg_hold_time_mins": round(avg_hold, 1),
+            "actionable": actionable
+        }
+
+    @staticmethod
+    def generate_trade_screenshot(ticket: int, stage: str, symbol: str, price: float, direction: str) -> str:
+        """
+        Rule 1: Screenshot before entry / exit. Generates a beautiful champagne-gold mockup chart.
+        """
+        import os
+        from Titan.config.config import BASE_DIR
+        
+        screenshot_dir = os.path.join(BASE_DIR, "Titan", "dashboard", "static", "screenshots")
+        if not os.path.exists(screenshot_dir):
+            try:
+                os.makedirs(screenshot_dir)
+            except Exception:
+                pass
+            
+        file_name = f"{ticket}_{stage}.png"
+        full_path = os.path.join(screenshot_dir, file_name)
+        
+        try:
+            from PIL import Image, ImageDraw
+            img = Image.new('RGB', (600, 350), color='#12141a')
+            draw = ImageDraw.Draw(img)
+            draw.rectangle([(5, 5), (595, 345)], outline='#d4af37', width=2)
+            draw.text((20, 20), "TITAN V8 COGNITIVE INTELLIGENCE ENGINE", fill='#d4af37')
+            draw.text((20, 45), f"TRADE EXECUTION CHART RECORD - ID #{ticket}", fill='#ffffff')
+            draw.text((20, 90), f"Stage: {stage}", fill='#c5a880')
+            draw.text((20, 115), f"Symbol: {symbol}", fill='#ffffff')
+            draw.text((20, 140), f"Direction: {direction}", fill='#00e676' if direction == 'BUY' else '#ff1744')
+            draw.text((20, 165), f"Reference Price: {price:.3f} USD", fill='#ffffff')
+            draw.text((20, 190), f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC", fill='#90a4ae')
+            draw.line([(50, 270), (200, 250), (350, 290), (500, 230), (550, 240)], fill='#d4af37', width=2)
+            draw.ellipse([(500 - 5, 230 - 5), (500 + 5, 230 + 5)], fill='#00e676' if stage == "ENTRY" else '#ff5252')
+            draw.text((490, 205), stage, fill='#ffffff')
+            img.save(full_path)
+            return f"/static/screenshots/{file_name}"
+        except Exception:
+            txt_path = full_path.replace(".png", ".txt")
+            try:
+                with open(txt_path, "w") as f:
+                    f.write(f"TITAN V8 CHART EXPORT #{ticket} [{stage}]\nSymbol: {symbol}\nDirection: {direction}\nPrice: {price}\n")
+            except Exception:
+                pass
+            return f"/static/screenshots/{ticket}_{stage}.txt"

@@ -146,7 +146,7 @@ class PositionManager:
                 atr_pts = round(exec_atr / point) if point > 0 else 0
                 
                 # --- 4. Volatility Exit Check ---
-                max_vol_pts = settings.get("max_atr_points_exit", 250)
+                max_vol_pts = settings.get("max_atr_points_exit", 2000)
                 if atr_pts > max_vol_pts:
                     logger.warning(f"Position {ticket} closed due to excessive volatility spike: ATR pts {atr_pts} > {max_vol_pts}.")
                     mt5_client.close_position(ticket, comment="Volatility Spike Exit")
@@ -172,11 +172,38 @@ class PositionManager:
                         conn.commit()
                         continue
 
-            # --- 6. Thesis Invalidation Check ---
+            # --- 6. Thesis Invalidation & Smart Exit Engine (Rule 13) ---
+            smart_exit = False
+            smart_reason = ""
+            
+            # Thesis reversal check
             if (direction == "BUY" and last_decision == "SELL") or (direction == "SELL" and last_decision == "BUY"):
-                logger.warning(f"Trade thesis invalidated for position {ticket} due to reverse signal ({last_decision}). Exiting instantly.")
-                mt5_client.close_position(ticket, comment="Titan Thesis Inval Exit")
-                cursor.execute("UPDATE trades SET status='CLOSED', close_price=?, close_time=CURRENT_TIMESTAMP, exit_reason='THESIS_INVALIDATED' WHERE ticket=?", (curr, ticket))
+                smart_exit = True
+                smart_reason = f"Thesis Invalidation ({last_decision})"
+                
+            # Momentum fading check (RSI weakening)
+            if rates is not None and len(rates) > 5:
+                from Titan.market.intelligence.utils import calculate_rsi
+                cls_arr = [r[4] for r in rates]
+                rsi_vals = calculate_rsi(cls_arr, 14)
+                if rsi_vals and len(rsi_vals) > 2:
+                    current_rsi = rsi_vals[-1]
+                    prev_rsi = rsi_vals[-2]
+                    # If BUY and momentum drop from highs
+                    if direction == "BUY" and current_rsi < 55.0 and prev_rsi > 70.0:
+                        smart_exit = True
+                        smart_reason = f"Buying Momentum Weakened (RSI {prev_rsi:.1f} -> {current_rsi:.1f})"
+                    elif direction == "SELL" and current_rsi > 45.0 and prev_rsi < 30.0:
+                        smart_exit = True
+                        smart_reason = f"Selling Momentum Weakened (RSI {prev_rsi:.1f} -> {current_rsi:.1f})"
+
+            if smart_exit:
+                logger.warning(f"Smart Exit triggered for position {ticket}: {smart_reason}. Exiting instantly.")
+                mt5_client.close_position(ticket, comment=f"Smart Exit: {smart_reason[:20]}")
+                cursor.execute(
+                    "UPDATE trades SET status='CLOSED', close_price=?, close_time=CURRENT_TIMESTAMP, exit_reason=? WHERE ticket=?", 
+                    (curr, f"SMART_EXIT: {smart_reason}", ticket)
+                )
                 conn.commit()
                 continue
                 

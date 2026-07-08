@@ -2,14 +2,73 @@
 let chart = null;
 let candleSeries = null;
 let emergencyHalted = false;
+let ws = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     initChart();
     fetchSettings();
-    runUpdateLoop();
-    setInterval(runUpdateLoop, 3000);  // Sync stats every 3 seconds
+    connectWebSocket();
+    fetchDiagnosis();
+    
+    // Slow sync for offline statistics and historic items (runs every 10 seconds)
+    setInterval(fetchHistory, 10000);
+    setInterval(fetchStats, 10000);
     setInterval(updateClock, 1000);   // Keep clocks in sync
+    setInterval(fetchDiagnosis, 15000);
 });
+
+function connectWebSocket() {
+    const wsProto = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const wsUrl = `${wsProto}//${window.location.host}/ws`;
+    console.log("Establishing WebSocket telemetry connection to:", wsUrl);
+    
+    ws = new WebSocket(wsUrl);
+    
+    ws.onopen = () => {
+        console.log("WebSocket connection active.");
+        // Fetch static states once
+        fetchHistory();
+        fetchStats();
+        fetchCandles();
+    };
+    
+    ws.onmessage = (event) => {
+        try {
+            const payload = JSON.parse(event.data);
+            const type = payload.type;
+            const data = payload.data;
+            
+            if (type === "telemetry") {
+                updateTelemetryUI(data);
+            } else if (type === "positions") {
+                updatePositionsUI(data);
+            } else if (type === "decision") {
+                updateDecisionUI(data);
+            } else if (type === "candle_update") {
+                if (candleSeries && data) {
+                    candleSeries.update({
+                        time: data.time,
+                        open: data.open,
+                        high: data.high,
+                        low: data.low,
+                        close: data.close
+                    });
+                }
+            }
+        } catch (e) {
+            console.error("Error parsing websocket message payload:", e);
+        }
+    };
+    
+    ws.onclose = () => {
+        console.log("WebSocket connection closed. Attempting reconnect in 3s...");
+        setTimeout(connectWebSocket, 3000);
+    };
+    
+    ws.onerror = (err) => {
+        console.error("WebSocket transport error:", err);
+    };
+}
 
 function initChart() {
     const chartContainer = document.getElementById("tv-chart");
@@ -72,12 +131,12 @@ async function fetchCandles() {
 }
 
 async function runUpdateLoop() {
+    // Retain fallback update loop endpoint pulls manually if needed
     await fetchTelemetry();
     await fetchPositions();
     await fetchDecision();
     await fetchHistory();
     await fetchStats();
-    await fetchCandles();
 }
 
 function updateClock() {
@@ -115,11 +174,11 @@ function updateAutoTradeIndicator(active) {
     const inc = document.getElementById("auto-trade-indicator");
     const lbl = document.getElementById("lbl-auto-trade");
     if (active) {
-        inc.className = "indicator-group connected";
-        lbl.innerText = "AUTO TRADE ACTIVE";
+        if (inc) inc.className = "indicator-group enabled";
+        if (lbl) lbl.innerText = "AUTO TRADE ACTIVE";
     } else {
-        inc.className = "indicator-group disabled";
-        lbl.innerText = "AUTO TRADE OFF";
+        if (inc) inc.className = "indicator-group disabled";
+        if (lbl) lbl.innerText = "AUTO TRADE OFF";
     }
 }
 
@@ -157,54 +216,69 @@ async function fetchTelemetry() {
     try {
         const res = await fetch("/api/telemetry");
         const data = await res.json();
-        
-        const eleStatus = document.getElementById("connection-indicator");
-        const lblStatus = document.getElementById("lbl-status");
-        
-        const valBalance = document.getElementById("val-balance");
-        const valEquity = document.getElementById("val-equity");
-        const valMarginFree = document.getElementById("val-margin-free");
-        const valMarginLevel = document.getElementById("val-margin-level");
-        const valPnl = document.getElementById("val-pnl");
-        const btnHalt = document.getElementById("btn-halt");
+        updateTelemetryUI(data);
+    } catch (e) {
+        console.error("Telemetry fetch error:", e);
+    }
+}
 
-        if (data.status === "CONNECTED") {
-            eleStatus.className = "indicator-group connected";
-            lblStatus.innerText = `CONNECTED : ${data.account} (${data.server})`;
-            
-            // Populate live price details on manual panel
-            const askPrice = document.getElementById("ask-price");
-            const bidPrice = document.getElementById("bid-price");
-            const lblLivePrice = document.getElementById("lbl-live-price");
-            
-            if (askPrice && data.ask) askPrice.innerText = data.ask.toFixed(2);
-            if (bidPrice && data.bid) bidPrice.innerText = data.bid.toFixed(2);
-            if (lblLivePrice && data.bid && data.ask) {
-                lblLivePrice.innerText = `XAUUSD: ${data.bid.toFixed(2)} / ${data.ask.toFixed(2)}`;
-            }
-        } else {
-            eleStatus.className = "indicator-group disconnected";
-            lblStatus.innerText = "DISCONNECTED";
+function updateTelemetryUI(data) {
+    const eleStatus = document.getElementById("connection-indicator");
+    const lblStatus = document.getElementById("lbl-status");
+    
+    const valBalance = document.getElementById("val-balance");
+    const valEquity = document.getElementById("val-equity");
+    const valMarginFree = document.getElementById("val-margin-free");
+    const valMarginLevel = document.getElementById("val-margin-level");
+    const valPnl = document.getElementById("val-pnl");
+    const btnHalt = document.getElementById("btn-halt");
+
+    if (data.status === "CONNECTED") {
+        if (eleStatus) eleStatus.className = "indicator-group connected";
+        if (lblStatus) lblStatus.innerText = `CONNECTED : ${data.account} (${data.server})`;
+        
+        // Populate live price details on manual panel
+        const askPrice = document.getElementById("ask-price");
+        const bidPrice = document.getElementById("bid-price");
+        const lblLivePrice = document.getElementById("lbl-live-price");
+        
+        if (askPrice && data.ask) askPrice.innerText = data.ask.toFixed(2);
+        if (bidPrice && data.bid) bidPrice.innerText = data.bid.toFixed(2);
+        if (lblLivePrice && data.bid && data.ask) {
+            lblLivePrice.innerText = `XAUUSD: ${data.bid.toFixed(2)} / ${data.ask.toFixed(2)}`;
         }
+    } else {
+        if (eleStatus) eleStatus.className = "indicator-group disconnected";
+        if (lblStatus) lblStatus.innerText = "DISCONNECTED";
+    }
 
-        const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: data.currency || 'USD' });
+    const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: data.currency || 'USD' });
+    if (valBalance) {
         valBalance.innerText = fmt.format(data.balance);
         const balTitle = valBalance.previousElementSibling;
         if (balTitle) balTitle.innerHTML = `Account Balance <span style="font-size:0.75rem; color:#90a4ae; font-weight:normal; margin-left:5px;">(DD: ${data.current_drawdown_pct}%)</span>`;
-        
+    }
+    
+    if (valEquity) {
         valEquity.innerText = fmt.format(data.equity);
         const eqTitle = valEquity.previousElementSibling;
         if (eqTitle) eqTitle.innerHTML = `Equity <span style="font-size:0.75rem; color:#90a4ae; font-weight:normal; margin-left:5px;">(Risk: ${fmt.format(data.daily_risk_used)})</span>`;
-        
+    }
+    
+    if (valMarginFree) {
         valMarginFree.innerText = fmt.format(data.margin_free);
         const mfTitle = valMarginFree.previousElementSibling;
         if (mfTitle) mfTitle.innerHTML = `Margin Free <span style="font-size:0.75rem; color:#90a4ae; font-weight:normal; margin-left:5px;">(Active: ${data.open_trades_count})</span>`;
-        
+    }
+    
+    if (valMarginLevel) {
         valMarginLevel.innerText = data.margin_level ? `${data.margin_level.toFixed(2)}%` : "0.00%";
         const mlTitle = valMarginLevel.previousElementSibling;
         if (mlTitle) mlTitle.innerHTML = `Margin Level <span style="font-size:0.72rem; color:#90a4ae; font-weight:normal; margin-left:5px;">(Spread: ${data.current_spread} | ATR: ${data.current_atr})</span>`;
-        
-        // Render detailed profit block inside Card P/L
+    }
+    
+    // Render detailed profit block inside Card P/L
+    if (valPnl) {
         const closedPnlFmt = fmt.format(data.today_closed_pnl);
         const openPnlFmt = fmt.format(data.today_open_pnl);
         valPnl.innerHTML = `
@@ -221,21 +295,23 @@ async function fetchTelemetry() {
         } else {
             valPnl.className = "metric-value font-numeric";
         }
+    }
 
-        // Auto trade badge
-        const eleAutoTrade = document.getElementById("auto-trade-indicator");
-        const lblAutoTrade = document.getElementById("lbl-auto-trade");
-        if (eleAutoTrade && lblAutoTrade) {
-            if (data.auto_trade) {
-                eleAutoTrade.className = "indicator-group enabled";
-                lblAutoTrade.innerText = "AUTO TRADE ON";
-            } else {
-                eleAutoTrade.className = "indicator-group disabled";
-                lblAutoTrade.innerText = "AUTO TRADE OFF";
-            }
+    // Auto trade badge
+    const eleAutoTrade = document.getElementById("auto-trade-indicator");
+    const lblAutoTrade = document.getElementById("lbl-auto-trade");
+    if (eleAutoTrade && lblAutoTrade) {
+        if (data.auto_trade) {
+            eleAutoTrade.className = "indicator-group enabled";
+            lblAutoTrade.innerText = "AUTO TRADE ON";
+        } else {
+            eleAutoTrade.className = "indicator-group disabled";
+            lblAutoTrade.innerText = "AUTO TRADE OFF";
         }
+    }
 
-        emergencyHalted = data.emergency_halt;
+    emergencyHalted = data.emergency_halt;
+    if (btnHalt) {
         if (emergencyHalted) {
             btnHalt.innerText = "RESUME ALGO TRADING";
             btnHalt.className = "btn btn-gold";
@@ -243,28 +319,67 @@ async function fetchTelemetry() {
             btnHalt.innerText = "EMERGENCY HALT";
             btnHalt.className = "btn btn-danger";
         }
+    }
 
-        // Update footer Engine Status
-        const footer = document.querySelector("footer.app-footer");
-        if (footer && data.system_status) {
-            footer.innerHTML = `
-                <p>Project Titan V2 — Automated Quantitative Investment Engine.</p>
-                <div style="font-size: 0.72rem; color: #90a4ae; margin-top: 10px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                    <span>🌐 Market Feed: <strong style="color: ${data.system_status.market_feed === 'Connected' ? '#4caf50' : '#f44336'};">${data.system_status.market_feed}</strong></span>
-                    <span>🏢 Broker: <strong style="color: ${data.system_status.broker === 'Connected' ? '#4caf50' : '#f44336'};">${data.system_status.broker}</strong></span>
-                    <span>⚡ Execution: <strong style="color: ${data.system_status.execution_engine === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.execution_engine}</strong></span>
-                    <span>🛡️ Risk Engine: <strong style="color: ${data.system_status.risk_engine === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.risk_engine}</strong></span>
-                    <span>🧠 Learning: <strong style="color: ${data.system_status.learning_engine === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.learning_engine}</strong></span>
-                    <span>📊 Position Mgr: <strong style="color: ${data.system_status.position_manager === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.position_manager}</strong></span>
-                    <span>📝 Journal: <strong style="color: ${data.system_status.journal === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.journal}</strong></span>
-                    <span>⏱️ Latency: <strong style="color: #ffeb3b;">${data.system_status.latency_ms}ms</strong></span>
-                    <span>🔄 Cycle: <strong style="color: #e0e0e0;">${data.system_status.eval_cycle}</strong></span>
-                </div>
-            `;
+    // Update HF Tick Monitor Card
+    const elTickSpeed = document.getElementById("val-tick-speed");
+    const elTickVelocity = document.getElementById("val-tick-velocity");
+    const elTickAccel = document.getElementById("val-tick-accel");
+    const elTickPersist = document.getElementById("val-tick-persist");
+    const elTickImbalance = document.getElementById("val-tick-imbalance");
+    const elTickSpreadChange = document.getElementById("val-tick-spread-change");
+
+    if (elTickSpeed) elTickSpeed.innerText = data.tick_speed ? `${Math.round(data.tick_speed)} ms` : "0 ms";
+    if (elTickVelocity) elTickVelocity.innerText = data.tick_velocity ? `${data.tick_velocity.toFixed(2)} pts/s` : "0.00 pts/s";
+    if (elTickAccel) elTickAccel.innerText = data.tick_acceleration ? `${data.tick_acceleration.toFixed(2)} pts/s²` : "0.00 pts/s²";
+    if (elTickPersist) {
+        elTickPersist.innerText = data.tick_persistence ? `${data.tick_persistence}` : "0";
+        if (data.tick_persistence > 0) {
+            elTickPersist.style.color = "#00e676";
+        } else if (data.tick_persistence < 0) {
+            elTickPersist.style.color = "#ff1744";
+        } else {
+            elTickPersist.style.color = "";
         }
+    }
+    if (elTickImbalance) {
+        elTickImbalance.innerText = data.tick_imbalance !== undefined ? data.tick_imbalance.toFixed(2) : "0.00";
+        if (data.tick_imbalance > 0.05) {
+            elTickImbalance.style.color = "#00e676";
+        } else if (data.tick_imbalance < -0.05) {
+            elTickImbalance.style.color = "#ff1744";
+        } else {
+            elTickImbalance.style.color = "";
+        }
+    }
+    if (elTickSpreadChange) {
+        elTickSpreadChange.innerText = data.tick_spread_change !== undefined ? `${data.tick_spread_change > 0 ? '+' : ''}${data.tick_spread_change}` : "0";
+        if (data.tick_spread_change > 0) {
+            elTickSpreadChange.style.color = "#ff1744";
+        } else if (data.tick_spread_change < 0) {
+            elTickSpreadChange.style.color = "#00e676";
+        } else {
+            elTickSpreadChange.style.color = "";
+        }
+    }
 
-    } catch (e) {
-        console.error("Telemetry fetch error:", e);
+    // Update footer Engine Status
+    const footer = document.querySelector("footer.app-footer");
+    if (footer && data.system_status) {
+        footer.innerHTML = `
+            <p>Project Titan V2 — Automated Quantitative Investment Engine.</p>
+            <div style="font-size: 0.72rem; color: #90a4ae; margin-top: 10px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <span>🌐 Market Feed: <strong style="color: ${data.system_status.market_feed === 'Connected' ? '#4caf50' : '#f44336'};">${data.system_status.market_feed}</strong></span>
+                <span>🏢 Broker: <strong style="color: ${data.system_status.broker === 'Connected' ? '#4caf50' : '#f44336'};">${data.system_status.broker}</strong></span>
+                <span>⚡ Execution: <strong style="color: ${data.system_status.execution_engine === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.execution_engine}</strong></span>
+                <span>🛡️ Risk Engine: <strong style="color: ${data.system_status.risk_engine === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.risk_engine}</strong></span>
+                <span>🧠 Learning: <strong style="color: ${data.system_status.learning_engine === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.learning_engine}</strong></span>
+                <span>📊 Position Mgr: <strong style="color: ${data.system_status.position_manager === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.position_manager}</strong></span>
+                <span>📝 Journal: <strong style="color: ${data.system_status.journal === 'Running' ? '#4caf50' : '#f44336'};">${data.system_status.journal}</strong></span>
+                <span>⏱️ Latency: <strong style="color: #ffeb3b;">${data.system_status.latency_ms}ms</strong></span>
+                <span>🔄 Cycle: <strong style="color: #e0e0e0;">${data.system_status.eval_cycle}</strong></span>
+            </div>
+        `;
     }
 }
 
@@ -274,6 +389,7 @@ function switchTradeTab(name) {
     panes.forEach(p => {
         const pane = document.getElementById(`pane-${p}`);
         const tab  = document.getElementById(`tab-${p}`);
+        if (!pane || !tab) return;
         if (p === name) {
             pane.style.display = 'block';
             tab.classList.add('active');
@@ -288,98 +404,269 @@ async function fetchPositions() {
     try {
         const res = await fetch("/api/positions");
         const data = await res.json();
-
-        // Update the Open Trades tab badge
-        document.getElementById("badge-open").innerText = data.length;
-
-        const tbody = document.getElementById("body-open-trades");
-        tbody.innerHTML = "";
-
-        if (data.length === 0) {
-            tbody.innerHTML = `<tr><td class="empty-state" colspan="8">No open positions. Waiting for qualified setup...</td></tr>`;
-            return;
-        }
-
-        const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
-        data.forEach(p => {
-            const tr = document.createElement("tr");
-            const sideClass = p.type === "BUY" ? "profit-positive" : "profit-negative";
-            const profitClass = p.profit >= 0 ? "profit-positive" : "profit-negative";
-            const trailBadge = p.trailing_active === 'ACTIVE'
-                ? `<span style="font-size:0.62rem; color:#ffd54f; margin-left:4px;">⟳ Trail</span>` : '';
-            const beBadge = p.be_active === 'ACTIVE'
-                ? `<span style="font-size:0.62rem; color:#00e676; margin-left:4px;">✓ BE</span>` : '';
-
-            tr.innerHTML = `
-                <td><strong>${p.symbol}</strong><br>
-                    <span style="font-size:0.68rem;color:#90a4ae;">#${p.ticket}</span></td>
-                <td><span class="${sideClass}" style="font-weight:700;">${p.type}</span>${trailBadge}${beBadge}</td>
-                <td class="font-numeric">${p.volume.toFixed(2)}</td>
-                <td class="font-numeric">${p.price_open.toFixed(3)}</td>
-                <td class="font-numeric">${p.price_current.toFixed(3)}</td>
-                <td class="font-numeric" style="font-size:0.73rem; color:#90a4ae;">
-                    SL: ${p.sl > 0 ? p.sl.toFixed(3) : '—'}<br>
-                    TP: ${p.tp > 0 ? p.tp.toFixed(3) : '—'}
-                </td>
-                <td><span class="${profitClass} font-numeric" style="font-weight:700;">${fmt.format(p.profit)}</span><br>
-                    <span style="font-size:0.65rem;color:#90a4ae;">swap: ${fmt.format(p.swap)}</span></td>
-                <td style="font-size:0.73rem;color:#90a4ae;">${p.strategy_name || 'Titan Scalper'}<br>
-                    <span style="color:#ffd54f;" title="${p.ai_explanation}">conf: ${Math.round((p.confidence || 0.7) * 100)}% 💡</span></td>
-                <td><button class="btn-close-pos" onclick="closeSinglePosition(${p.ticket})">Close</button></td>
-            `;
-            tbody.appendChild(tr);
-        });
-
+        updatePositionsUI(data);
     } catch (e) {
         console.error("Positions fetch error:", e);
     }
+}
+
+function updatePositionsUI(data) {
+    const badgeOpen = document.getElementById("badge-open");
+    if (badgeOpen) badgeOpen.innerText = data.length;
+
+    const tbody = document.getElementById("body-open-trades");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    if (data.length === 0) {
+        tbody.innerHTML = `<tr><td class="empty-state" colspan="9">No open positions. Waiting for qualified setup...</td></tr>`;
+        return;
+    }
+
+    const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    data.forEach(p => {
+        const tr = document.createElement("tr");
+        const sideClass = p.type === "BUY" ? "profit-positive" : "profit-negative";
+        const profitClass = p.profit >= 0 ? "profit-positive" : "profit-negative";
+        const trailBadge = p.trailing_active === 'ACTIVE'
+            ? `<span style="font-size:0.62rem; color:#ffd54f; margin-left:4px;">⟳ Trail</span>` : '';
+        const beBadge = p.be_active === 'ACTIVE'
+            ? `<span style="font-size:0.62rem; color:#00e676; margin-left:4px;">✓ BE</span>` : '';
+
+        tr.innerHTML = `
+            <td><strong>${p.symbol}</strong><br>
+                <span style="font-size:0.68rem;color:#90a4ae;">#${p.ticket}</span></td>
+            <td><span class="${sideClass}" style="font-weight:700;">${p.type}</span>${trailBadge}${beBadge}</td>
+            <td class="font-numeric">${p.volume.toFixed(2)}</td>
+            <td class="font-numeric">${p.price_open.toFixed(3)}</td>
+            <td class="font-numeric">${p.price_current.toFixed(3)}</td>
+            <td class="font-numeric" style="font-size:0.73rem; color:#90a4ae;">
+                SL: ${p.sl > 0 ? p.sl.toFixed(3) : '—'}<br>
+                TP: ${p.tp > 0 ? p.tp.toFixed(3) : '—'}
+            </td>
+            <td><span class="${profitClass} font-numeric" style="font-weight:700;">${fmt.format(p.profit)}</span><br>
+                <span style="font-size:0.65rem;color:#90a4ae;">swap: ${fmt.format(p.swap)}</span></td>
+            <td style="font-size:0.73rem;color:#90a4ae;">${p.strategy_name || 'Titan Scalper'}<br>
+                <span style="color:#ffd54f;" title="${p.ai_explanation}">conf: ${Math.round((p.confidence || 0.7) * 100)}% 💡</span></td>
+            <td><button class="btn-close-pos" onclick="closeSinglePosition(${p.ticket})">Close</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
 
 async function fetchDecision() {
     try {
         const res = await fetch("/api/decision");
         const data = await res.json();
-        
-        const score = data.score;
-        document.getElementById("lbl-score").innerText = score;
-        
-        const ring = document.getElementById("ring-score-fill");
+        updateDecisionUI(data);
+    } catch (e) {
+        console.error("Decision intelligence query options failure:", e);
+    }
+}
+
+function updateDecisionUI(data) {
+    const score = data.score || 0;
+    const lblScore = document.getElementById("lbl-score");
+    if (lblScore) lblScore.innerText = score;
+    
+    const ring = document.getElementById("ring-score-fill");
+    if (ring) {
         const offset = 314 - (314 * score) / 100;
         ring.style.strokeDashoffset = offset;
+    }
 
-        const badge = document.getElementById("lbl-decision-badge");
+    const badge = document.getElementById("lbl-decision-badge");
+    if (badge && data.decision) {
         badge.innerText = data.decision;
         badge.className = `decision-badge ${data.decision.toLowerCase()}`;
+    }
 
-        const confidencePct = Math.round(data.confidence * 100);
-        document.getElementById("lbl-confidence").innerText = `${confidencePct}%`;
-        document.getElementById("bar-confidence").style.width = `${confidencePct}%`;
+    const confidencePct = Math.round((data.confidence || 0) * 100);
+    const lblConfidence = document.getElementById("lbl-confidence");
+    const barConfidence = document.getElementById("bar-confidence");
+    if (lblConfidence) lblConfidence.innerText = `${confidencePct}%`;
+    if (barConfidence) barConfidence.style.width = `${confidencePct}%`;
 
-        document.getElementById("val-market-state").innerText = data.regime || "N/A";
-        document.getElementById("val-trend-state").innerText = data.trend || "N/A";
-        document.getElementById("val-momentum-state").innerText = data.momentum || "N/A";
-        document.getElementById("val-volatility-state").innerText = data.volatility || "N/A";
-        document.getElementById("val-structure-state").innerText = data.structure || "N/A";
-        document.getElementById("val-liquidity-state").innerText = data.liquidity || "N/A";
-        
-        document.getElementById("val-entry").innerText = data.entry ? data.entry.toFixed(2) : "0.00";
-        document.getElementById("val-sl").innerText = data.sl ? data.sl.toFixed(2) : "0.00";
-        document.getElementById("val-tp").innerText = data.tp ? data.tp.toFixed(2) : "0.00";
-        document.getElementById("val-expected-rr").innerText = data.expected_rr || "-";
-        document.getElementById("val-expected-hold").innerText = data.expected_hold || "-";
-        
+    const regime = document.getElementById("val-market-state");
+    const trend = document.getElementById("val-trend-state");
+    const momentum = document.getElementById("val-momentum-state");
+    const volatility = document.getElementById("val-volatility-state");
+    const structure = document.getElementById("val-structure-state");
+    const liquidity = document.getElementById("val-liquidity-state");
+
+    if (regime) regime.innerText = data.regime || "N/A";
+    if (trend) trend.innerText = data.trend || "N/A";
+    if (momentum) momentum.innerText = data.momentum || "N/A";
+    if (volatility) volatility.innerText = data.volatility || "N/A";
+    if (structure) structure.innerText = data.structure || "N/A";
+    if (liquidity) liquidity.innerText = data.liquidity || "N/A";
+    
+    const valEntry = document.getElementById("val-entry");
+    const valSl = document.getElementById("val-sl");
+    const valTp = document.getElementById("val-tp");
+    const valErr = document.getElementById("val-expected-rr");
+    const valHold = document.getElementById("val-expected-hold");
+
+    if (valEntry) valEntry.innerText = data.entry ? data.entry.toFixed(2) : "0.00";
+    if (valSl) valSl.innerText = data.sl ? data.sl.toFixed(2) : "0.00";
+    if (valTp) valTp.innerText = data.tp ? data.tp.toFixed(2) : "0.00";
+    if (valErr) valErr.innerText = data.expected_rr || "-";
+    if (valHold) valHold.innerText = data.expected_hold || "-";
+    
+    const valReason = document.getElementById("val-reason-text");
+    if (valReason) {
         if (data.decision === "WAIT") {
-            document.getElementById("val-reason-text").innerHTML = `
+            valReason.innerHTML = `
                 <strong>Next setup window:</strong> ${data.next_setup}<br>
-                <strong>Evaluation Cycle Remaining:</strong> ${data.time_until_next}<br><br>
+                <strong>Evaluation Cycle Remaining:</strong> ${data.time_until_next || "Streaming active"}<br><br>
                 ${data.reason}
             `;
         } else {
-            document.getElementById("val-reason-text").innerText = data.reason;
+            valReason.innerText = data.reason;
         }
+    }
 
+    // Update Commander and Predictive UI fields
+    const aiGrade = document.getElementById("ai-grade");
+    const aiWinProb = document.getElementById("ai-win-prob");
+    const aiExpectedMove = document.getElementById("ai-expected-move");
+    const aiRiskRating = document.getElementById("ai-risk-rating");
+    const aiVoteConsensus = document.getElementById("ai-vote-consensus");
+    const pred10s = document.getElementById("pred-10s");
+    const pred30s = document.getElementById("pred-30s");
+    const pred60s = document.getElementById("pred-60s");
+
+    if (aiGrade) aiGrade.innerText = data.grade || "N/A";
+    if (aiWinProb) aiWinProb.innerText = data.expected_win_probability || "0.00%";
+    if (aiExpectedMove) aiExpectedMove.innerText = data.expected_movement || "+0.00 USD";
+    if (aiRiskRating) aiRiskRating.innerText = data.risk_grade || "-";
+
+    const elSimCount = document.getElementById("val-similar-count");
+    const elSimWr = document.getElementById("val-similar-wr");
+    if (elSimCount) elSimCount.innerText = data.similar_setups_count !== undefined ? data.similar_setups_count : "0";
+    if (elSimWr) elSimWr.innerText = data.similar_setups_win_rate !== undefined ? `${data.similar_setups_win_rate.toFixed(1)}%` : "100.0%";
+    
+    if (aiVoteConsensus) {
+        aiVoteConsensus.innerText = data.decision || "WAIT";
+        aiVoteConsensus.style.color = data.decision === "BUY" ? "#00e676" : data.decision === "SELL" ? "#ff1744" : "#ffd54f";
+    }
+    
+    if (pred10s) {
+        pred10s.innerText = data.pred_10s || "NEUTRAL";
+        pred10s.style.color = data.pred_10s === "BULLISH" ? "#00e676" : "#ff1744";
+    }
+    if (pred30s) {
+        pred30s.innerText = data.pred_30s || "NEUTRAL";
+        pred30s.style.color = data.pred_30s === "BULLISH" ? "#00e676" : "#ff1744";
+    }
+    if (pred60s) {
+        pred60s.innerText = data.pred_60s || "NEUTRAL";
+        pred60s.style.color = data.pred_60s === "BULLISH" ? "#00e676" : "#ff1744";
+    }
+}
+
+async function fetchDiagnosis() {
+    try {
+        const res = await fetch("/api/diagnosis");
+        const data = await res.json();
+        
+        // Fetch learning diagnostics (Rule 10)
+        let learnData = null;
+        try {
+            const learnRes = await fetch("/api/learning_diagnostics");
+            learnData = await learnRes.json();
+        } catch (err) {
+            console.error("Failed to query learning diagnostics:", err);
+        }
+        
+        const container = document.getElementById("ai-diagnosis-content");
+        if (!container) return;
+        
+        let html = "";
+        
+        if (learnData && learnData.last_outcome) {
+            const lo = learnData.last_outcome;
+            const pnlColor = lo.pnl >= 0 ? "#00e676" : "#ff1744";
+            const outcomeText = lo.pnl >= 0 ? "WIN" : "LOSS";
+            
+            html += `
+                <div style="margin-bottom: 12px; padding: 8px; border: 1px solid rgba(212,175,55,0.15); background: rgba(212,175,55,0.02); border-radius: 4px; font-size:0.75rem;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 3px; font-weight:bold;">
+                        <span style="color:#d4af37;">Last trade: #${lo.ticket} (${lo.direction})</span>
+                        <span style="color:${pnlColor};">${outcomeText} ($${lo.pnl.toFixed(2)})</span>
+                    </div>
+                    <div style="font-size:0.72rem; color:#e2e2e2; line-height: 1.35;">
+            `;
+            
+            if (lo.pnl < 0) {
+                const rc = lo.root_cause || {};
+                html += `
+                    <strong>Root Cause:</strong> <span style="color:#ffb74d;">${rc.primary_cause || "Market Noise"}</span> <br/>
+                    <strong>MFE/MAE:</strong> ${lo.mfe} pts / ${lo.mae} pts
+                `;
+            } else {
+                const wa = lo.win_analysis || {};
+                const confs = wa.confirmations || [];
+                html += `
+                    <strong>Success Reason:</strong> <span style="color:#81c784;">${wa.success_reason || "Confluent path targets hit"}</span> <br/>
+                    <strong>Confirmations:</strong> ${confs.join(", ") || "None"}
+                `;
+            }
+            
+            if (lo.screenshot_entry) {
+                html += `
+                    <div style="margin-top: 4px; display: flex; gap: 8px;">
+                        <a href="${lo.screenshot_entry}" target="_blank" style="color:#d4af37; text-decoration:none; font-size:0.68rem;">🖼️ Entry Chart</a>
+                        <a href="${lo.screenshot_exit}" target="_blank" style="color:#d4af37; text-decoration:none; font-size:0.68rem;">🖼️ Exit Chart</a>
+                    </div>
+                `;
+            }
+            
+            html += `
+                    </div>
+                </div>
+            `;
+        }
+        
+        if (data.diagnoses.length === 0 && data.rejections.length === 0) {
+            html += `<span style="color:#90a4ae;">All systems operational. ${data.conclusion}</span>`;
+            container.innerHTML = html;
+            return;
+        }
+        
+        html += `<div style="color: #ffd54f; font-weight: bold; margin-bottom: 5px;">${data.conclusion}</div>`;
+        
+        // Show recent rejections
+        if (data.rejections.length > 0) {
+            html += `<div style="font-weight:bold; color:#ffb74d; margin-top:5px; font-size:0.8rem;">Blockers (Recent Rejections):</div>`;
+            data.rejections.forEach(r => {
+                html += `
+                    <div style="margin-bottom: 5px; padding-left: 8px; border-left: 2px solid #ffb74d; background: rgba(255,183,77,0.05); padding-top:2px; padding-bottom:2px; border-radius: 0 4px 4px 0;">
+                        <span style="color:#ffd54f; font-size:0.7rem;">[${r.time}]</span>: <strong>${r.conclusion}</strong> <br/>
+                        <span style="color:#ffb74d; font-size:0.75rem;">Reason:</span> ${r.reason}
+                    </div>
+                `;
+            });
+        }
+        
+        // Show recent losses
+        if (data.diagnoses.length > 0) {
+            html += `<div style="font-weight:bold; color:#e57373; margin-top:8px; font-size:0.8rem;">Friction Events (Recent Trade Losses):</div>`;
+            data.diagnoses.forEach(d => {
+                html += `
+                    <div style="margin-bottom: 5px; padding-left: 8px; border-left: 2px solid #e57373; background: rgba(229,115,115,0.05); padding-top:2px; padding-bottom:2px; border-radius: 0 4px 4px 0;">
+                        <span style="color:#e57373; font-size:0.7rem;">[${d.time}]</span> Ticket #${d.ticket} lost ${Math.abs(d.pnl).toFixed(2)} USD. <br/>
+                        <span style="color:#ffd54f; font-size:0.75rem;">Diagnostics:</span> ${d.diagnostics} <br/>
+                        <span style="color:#90a4ae; font-size:0.72rem;">Guideline:</span> ${d.guideline}
+                    </div>
+                `;
+            });
+        }
+        
+        container.innerHTML = html;
+        
     } catch (e) {
-        console.error("Decision intelligence query options failure:", e);
+        console.error("Diagnosis fetch error:", e);
     }
 }
 
@@ -395,9 +682,13 @@ async function fetchHistory() {
         const losses  = data.filter(h => (h.pnl || 0) < 0);
 
         // Update badges
-        document.getElementById("badge-history").innerText = data.length;
-        document.getElementById("badge-profit").innerText  = profits.length;
-        document.getElementById("badge-loss").innerText    = losses.length;
+        const histBadge = document.getElementById("badge-history");
+        const profBadge = document.getElementById("badge-profit");
+        const lossBadge = document.getElementById("badge-loss");
+        
+        if (histBadge) histBadge.innerText = data.length;
+        if (profBadge) profBadge.innerText  = profits.length;
+        if (lossBadge) lossBadge.innerText    = losses.length;
 
         // ── Helper to build a closed-trade row ──────────────
         const buildRow = (h, cols) => {
@@ -439,29 +730,35 @@ async function fetchHistory() {
 
         // ── Populate History pane ──────────────────────────
         const histBody = document.getElementById("body-history");
-        histBody.innerHTML = "";
-        if (data.length === 0) {
-            histBody.innerHTML = `<tr><td class="empty-state" colspan="10">No historical outcomes found.</td></tr>`;
-        } else {
-            data.forEach(h => histBody.appendChild(buildRow(h, 'full')));
+        if (histBody) {
+            histBody.innerHTML = "";
+            if (data.length === 0) {
+                histBody.innerHTML = `<tr><td class="empty-state" colspan="10">No historical outcomes found.</td></tr>`;
+            } else {
+                data.forEach(h => histBody.appendChild(buildRow(h, 'full')));
+            }
         }
 
         // ── Populate Profit pane ───────────────────────────
         const profBody = document.getElementById("body-profit");
-        profBody.innerHTML = "";
-        if (profits.length === 0) {
-            profBody.innerHTML = `<tr><td class="empty-state" colspan="8">No profitable trades recorded yet.</td></tr>`;
-        } else {
-            profits.forEach(h => profBody.appendChild(buildRow(h, 'short')));
+        if (profBody) {
+            profBody.innerHTML = "";
+            if (profits.length === 0) {
+                profBody.innerHTML = `<tr><td class="empty-state" colspan="8">No profitable trades recorded yet.</td></tr>`;
+            } else {
+                profits.forEach(h => profBody.appendChild(buildRow(h, 'short')));
+            }
         }
 
         // ── Populate Loss pane ─────────────────────────────
         const lossBody = document.getElementById("body-loss");
-        lossBody.innerHTML = "";
-        if (losses.length === 0) {
-            lossBody.innerHTML = `<tr><td class="empty-state" colspan="8">No losing trades recorded yet.</td></tr>`;
-        } else {
-            losses.forEach(h => lossBody.appendChild(buildRow(h, 'short')));
+        if (lossBody) {
+            lossBody.innerHTML = "";
+            if (losses.length === 0) {
+                lossBody.innerHTML = `<tr><td class="empty-state" colspan="8">No losing trades recorded yet.</td></tr>`;
+            } else {
+                losses.forEach(h => lossBody.appendChild(buildRow(h, 'short')));
+            }
         }
 
     } catch (e) {
@@ -475,6 +772,7 @@ async function fetchStats() {
         const data = await res.json();
         
         const list = document.getElementById("feedback-list");
+        if (!list) return;
         list.innerHTML = "";
 
         if (data.status === "insufficient_data" || !data.total_trades) {
@@ -543,7 +841,7 @@ async function triggerBacktest() {
 
     btn.innerText = "Running Replay...";
     btn.disabled = true;
-    summaryBox.style.display = "none";
+    if (summaryBox) summaryBox.style.display = "none";
 
     try {
         const res = await fetch("/api/backtest", {
@@ -564,7 +862,7 @@ async function triggerBacktest() {
             document.getElementById("bt-expectancy").innerText = data.expectancy;
             document.getElementById("bt-hold").innerText = data.avg_hold_mins;
             document.getElementById("bt-balance").innerText = `$${data.final_balance.toLocaleString()}`;
-            summaryBox.style.display = "block";
+            if (summaryBox) summaryBox.style.display = "block";
         } else {
             alert(`Simulation Failed: ${data.detail || "Unknown error"}`);
         }
@@ -611,7 +909,8 @@ async function placeManualOrder(action) {
         if (res.status === 200 && !data.error) {
             statusMsg.innerText = `Success: Ticket #${data.ticket}`;
             statusMsg.className = "mt-status-msg success";
-            runUpdateLoop();
+            fetchHistory();
+            fetchStats();
         } else {
             statusMsg.innerText = `Error: ${data.detail || data.error || "Unknown Failure"}`;
             statusMsg.className = "mt-status-msg error";
@@ -632,7 +931,8 @@ async function closeSinglePosition(ticket) {
         const data = await res.json();
         if (res.status === 200) {
             alert(`Closed position #${ticket} successfully.`);
-            runUpdateLoop();
+            fetchHistory();
+            fetchStats();
         } else {
             alert(`Failed to close position: ${data.detail || data.message || "Unknown error"}`);
         }
@@ -650,7 +950,8 @@ async function closeAllPositions() {
         });
         const data = await res.json();
         alert(data.message || "Close all requested.");
-        runUpdateLoop();
+        fetchHistory();
+        fetchStats();
     } catch (e) {
         console.error(e);
         alert(`Error liquidating positions: ${e}`);

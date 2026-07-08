@@ -3,8 +3,8 @@ import os
 import json
 import logging
 
-# Ensure the root folder of the project is added to python path
-sys.path.insert(0, r"C:\Users\hp\Desktop\goldtradingbot")
+# Ensure the root folder of the project is added to python path dynamically
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from Titan.execution.mt5_client import MT5Client
 from Titan.storage.db import get_db_connection

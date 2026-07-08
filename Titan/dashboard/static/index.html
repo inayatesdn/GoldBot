@@ -265,6 +265,67 @@
             </div>
         </section>
 
+        <!-- AI COMMANDER & SELF-DIAGNOSIS CONSOLE -->
+        <section class="commander-panel card-panel grid-full" style="margin-top:20px;">
+            <div class="panel-header" style="border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 10px;">
+                <h2 style="display:flex; align-items:center; gap:8px;">🤖 Institutional AI Commander & Diagnostics Console</h2>
+                <span class="badge badge-gold" id="lbl-commander-status">ACTIVE COGNITION</span>
+            </div>
+            
+            <div class="panel-content dynamic-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; padding-top:15px;">
+                <!-- Column 1: AI Commander Insights -->
+                <div class="commander-card" style="background: rgba(18, 18, 18, 0.6); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                    <h3 style="margin-top:0; color:#d4af37; font-size:1rem; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px;">AI Commander Advice</h3>
+                    <div class="evidence-box">
+                        <div class="evidence-item"><span class="label">Trade Grade</span><span class="value accent-gold" id="ai-grade" style="font-weight:bold; color:#d4af37;">N/A</span></div>
+                        <div class="evidence-item"><span class="label">Expected Win Prob</span><span class="value" id="ai-win-prob" style="font-weight:bold; color:#4caf50;">0.00%</span></div>
+                        <div class="evidence-item"><span class="label">Expected Movement</span><span class="value" id="ai-expected-move" style="font-weight:bold;">+0.00 USD</span></div>
+                        <div class="evidence-item"><span class="label">Risk Rating</span><span class="value" id="ai-risk-rating" style="font-weight:bold;">-</span></div>
+                        <div class="evidence-item"><span class="label">Similar Setups</span><span class="value" id="val-similar-count" style="font-weight:bold; color: #ffd54f;">0</span></div>
+                        <div class="evidence-item"><span class="label">Setup Win Rate</span><span class="value" id="val-similar-wr" style="font-weight:bold; color: #4caf50;">100%</span></div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Predictive Engine & Strategy Votes -->
+                <div class="commander-card" style="background: rgba(18, 18, 18, 0.6); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                    <h3 style="margin-top:0; color:#d4af37; font-size:1rem; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px;">Marketplace Voter & Forecast</h3>
+                    <div style="font-size:0.8rem;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                            <span>Marketplace consensus:</span><strong id="ai-vote-consensus" style="color:#d4af37;">WAIT</strong>
+                        </div>
+                        <div class="evidence-box" style="margin-top: 10px;">
+                            <div class="evidence-item"><span class="label">10s Forecast</span><span class="value" id="pred-10s" style="font-weight:bold;">NEUTRAL</span></div>
+                            <div class="evidence-item"><span class="label">30s Forecast</span><span class="value" id="pred-30s" style="font-weight:bold;">NEUTRAL</span></div>
+                            <div class="evidence-item"><span class="label">60s Forecast</span><span class="value" id="pred-60s" style="font-weight:bold;">NEUTRAL</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Self-Diagnosis Engine -->
+                <div class="commander-card" style="background: rgba(18, 18, 18, 0.6); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                    <h3 style="margin-top:0; color:#d4af37; font-size:1rem; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px;">System Diagnosis</h3>
+                    <div id="ai-diagnosis-content" style="max-height: 120px; overflow-y: auto; font-size: 0.78rem; line-height: 1.4;">
+                        <span style="color:#90a4ae;">Loading cognitive diagnosis profile...</span>
+                    </div>
+                </div>
+
+                <!-- Column 4: High-Frequency Tick Desk -->
+                <div class="commander-card" style="background: rgba(18, 18, 18, 0.6); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                    <h3 style="margin-top:0; color:#d4af37; font-size:1rem; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px;">HF Tick Monitor</h3>
+                    <div style="font-size:0.8rem;">
+                        <div class="evidence-box">
+                            <div class="evidence-item"><span class="label">Tick Speed</span><span class="value" id="val-tick-speed" style="font-weight:bold;">0 ms</span></div>
+                            <div class="evidence-item"><span class="label">Velocity</span><span class="value" id="val-tick-velocity" style="font-weight:bold;">0.0 pts/s</span></div>
+                            <div class="evidence-item"><span class="label">Acceleration</span><span class="value" id="val-tick-accel" style="font-weight:bold;">0.0 pts/s²</span></div>
+                            <div class="evidence-item"><span class="label">Tick Persistence</span><span class="value" id="val-tick-persist" style="font-weight:bold;">0</span></div>
+                            <div class="evidence-item"><span class="label">Imbalance</span><span class="value" id="val-tick-imbalance" style="font-weight:bold;">0.00</span></div>
+                            <div class="evidence-item"><span class="label">Tick Spread Delta</span><span class="value" id="val-tick-spread-change" style="font-weight:bold;">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- BOTTOM ROW: Settings | Learning | Backtest -->
         <section class="settings-panel card-panel span-4">
             <div class="panel-header"><h2>Control Panel</h2></div>

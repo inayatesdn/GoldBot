@@ -51,7 +51,7 @@ def start_server():
     threading.Thread(target=open_browser, daemon=True).start()
     
     print("[System] Launching FastAPI Web Application and active orchestrator thread...")
-    uvicorn.run("Titan.dashboard.app:app", host="127.0.0.1", port=8555, reload=False)
+    uvicorn.run("Titan.dashboard.app:app", host="0.0.0.0", port=8555, reload=False)
 
 if __name__ == "__main__":
     print_banner()

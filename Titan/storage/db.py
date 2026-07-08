@@ -100,7 +100,17 @@ def initialize_database():
     outcomes_cols = [c[1] for c in cursor.fetchall()]
     outcome_migration_cols = [
         ("timeframe", "TEXT DEFAULT 'M1'"),
-        ("setup_name", "TEXT DEFAULT 'Confluence Breakout'")
+        ("setup_name", "TEXT DEFAULT 'Confluence Breakout'"),
+        ("entry_score", "INTEGER DEFAULT 0"),
+        ("sl_hit", "INTEGER DEFAULT 0"),
+        ("tp_hit", "INTEGER DEFAULT 0"),
+        ("manual_exit", "INTEGER DEFAULT 0"),
+        ("smart_exit", "INTEGER DEFAULT 0"),
+        ("screenshot_entry", "TEXT"),
+        ("screenshot_exit", "TEXT"),
+        ("tick_sequence_json", "TEXT"),
+        ("root_cause_json", "TEXT"),
+        ("win_analysis_json", "TEXT")
     ]
     for col, c_type in outcome_migration_cols:
         if col not in outcomes_cols:
